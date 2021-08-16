@@ -10,7 +10,6 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginHorizontal="10dp"
-        android:padding="1dp"
         tools:src="@tools:sample/avatars"/>
 
     <RelativeLayout
