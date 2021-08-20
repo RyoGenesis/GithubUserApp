@@ -40,6 +40,7 @@ class UserDetailsActivity : AppCompatActivity() {
         binding.tvCompany.text = user.company
         binding.tvFollowers.text = user.followers
         binding.tvFollowing.text = user.following
+        binding.tvRepository.text = user.repository
     }
 
     override fun finish() {
