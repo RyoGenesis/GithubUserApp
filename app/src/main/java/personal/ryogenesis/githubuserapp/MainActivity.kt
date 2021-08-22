@@ -3,8 +3,8 @@ package personal.ryogenesis.githubuserapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.Adapter
+import androidx.recyclerview.widget.*
 import personal.ryogenesis.githubuserapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,14 +18,15 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Github User"
 
-        binding.rvUsers.setHasFixedSize(true)
-
-        binding.rvUsers.addItemDecoration(
-            DividerItemDecoration(
-                binding.rvUsers.context,
-                DividerItemDecoration.VERTICAL
+        binding.rvUsers.apply {
+            setHasFixedSize(true)
+            addItemDecoration(
+                DividerItemDecoration(
+                    binding.rvUsers.context,
+                    DividerItemDecoration.VERTICAL
+                )
             )
-        )
+        }
 
         prepareUserData()
         showRecyclerList()
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                 dataAvatar.getResourceId(position,-1)
             )
             list.add(user)
+            dataAvatar.recycle()
         }
     }
 
@@ -62,9 +64,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerList(){
-        binding.rvUsers.layoutManager = LinearLayoutManager(this)
         val listUserAdapter = ListUserAdapter(list)
-        binding.rvUsers.adapter = listUserAdapter
+        binding.rvUsers.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = listUserAdapter
+        }
 
         listUserAdapter.setOnItemClickCallback(object: ListUserAdapter.OnItemClickCallback{
             override fun onItemClicked(data: User) {

@@ -32,15 +32,17 @@ class ListUserAdapter(private val userList: ArrayList<User>) : RecyclerView.Adap
 
     inner class ListViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User){
-            Glide.with(itemView.context)
-                .load(user.avatarImg)
-                .apply(RequestOptions().override(100,100))
-                .into(binding.imgAvatar)
+            with(binding){
+                Glide.with(itemView.context)
+                    .load(user.avatarImg)
+                    .apply(RequestOptions().override(100,100))
+                    .into(imgAvatar)
 
-            binding.tvUserName.text = user.username
-            binding.tvName.text = user.name
-            val follower = "Followers: ${user.followers}"
-            binding.tvFollower.text = follower
+                tvUserName.text = user.username
+                tvName.text = user.name
+                val follower = "Followers: ${user.followers}"
+                tvFollower.text = follower
+            }
         }
     }
 

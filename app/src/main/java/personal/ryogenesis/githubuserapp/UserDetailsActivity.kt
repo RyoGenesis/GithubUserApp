@@ -3,9 +3,7 @@ package personal.ryogenesis.githubuserapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import personal.ryogenesis.githubuserapp.databinding.ActivityMainBinding
 import personal.ryogenesis.githubuserapp.databinding.ActivityUserDetailsBinding
 
 class UserDetailsActivity : AppCompatActivity() {
@@ -30,17 +28,19 @@ class UserDetailsActivity : AppCompatActivity() {
 
         supportActionBar?.title = "${user.username} Profile"
 
-        Glide.with(this)
-            .load(user.avatarImg)
-            .into(binding.imgAvatar)
+        with(binding){
+            Glide.with(this@UserDetailsActivity)
+                .load(user.avatarImg)
+                .into(imgAvatar)
 
-        binding.tvUsername.text = user.username
-        binding.tvName.text = user.name
-        binding.tvLocation.text = user.location
-        binding.tvCompany.text = user.company
-        binding.tvFollowers.text = user.followers
-        binding.tvFollowing.text = user.following
-        binding.tvRepository.text = user.repository
+            tvUsername.text = user.username
+            tvName.text = user.name
+            tvLocation.text = user.location
+            tvCompany.text = user.company
+            tvFollowers.text = user.followers
+            tvFollowing.text = user.following
+            tvRepository.text = user.repository
+        }
     }
 
     override fun finish() {
